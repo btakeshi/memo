@@ -1,5 +1,5 @@
-\documentclass[landscape,a3paper]{ltjsarticle}
-
+\documentclass[landscape,a3paper,8pt]{ltjsarticle}
+\usepackage{luatexja}
 %% ----------------------------------------------------------------------------------------------------
 %% 版面設定
 %% ----------------------------------------------------------------------------------------------------
@@ -7,6 +7,15 @@
 \setlength{\columnsep}{1.8\zw}
 \setlength{\columnseprule}{0.1pt}
 \parindent=0pt
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% Tikz関係＋色
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
 
 %% ----------------------------------------------------------------------------------------------------
 %% ヘッダー・フッター
@@ -16,7 +25,46 @@
 \fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（２点）、２回目は宿題の取り組み状況（２点）、３回目は最終評価（２点）です。}}
 \fancyfoot[RO,RE]{\textcolor{blue}{※青い枠が課題です。青い枠内で解いてください。}　\textcolor{red}{※赤い枠も課題です。こちらは記述問題としてチェックします。途中もしっかりと残しておこう。}　※少しずつ〇付けをしていきます。１週間ぐらいしたら評価を行います。お早めに。}
 \fancyfoot[CO,CE]{}
-\newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\gtfamily\bfseries\small{}#1}}}
+\newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\gtfamily\bfseries{}#1}}}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 環境作成 by environ
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{environ}
+%% --------------------------------------------------------------------------------
+%% ---------- \BODY で高さを自動調整する解答ボックス
+\NewEnviron{ansBlockAuto}{%
+ \begin{tcolorbox}[colframe=blue,colback=white]
+  \BODY
+ \end{tcolorbox}
+}
+%% ---------- 高さを指定して \BODY を含む解答ボックス
+\NewEnviron{ansBlockSize}[1]{%
+ \begin{tcolorbox}[colframe=blue,colback=white,height=#1\zw]
+  \BODY
+ \end{tcolorbox}
+}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% コマンド作成
+%% ----------------------------------------------------------------------------------------------------
+%% --------------------------------------------------------------------------------------教科書取り込み
+\newcommand{\textbook}[2][1.00]{%
+  \begin{minipage}{0.9\columnwidth}
+    \includegraphics[trim=50 100 110 100, width=#1\textwidth, clip]{#2}
+  \end{minipage}
+}
+\newcommand{\AnswerBox}[2][1.00]{%
+  \vspace{.5zw}\\
+  \begin{tikzpicture}%
+    \draw[dotted,very thick,blue] (0,0) rectangle (#1\columnwidth,#2\zw);%
+  \end{tikzpicture}
+}
+
+
+
 
 \usepackage{graphicx}%includegraphics
 \usepackage{multicol}
@@ -24,13 +72,155 @@
 
 
 
+%% ----------------------------------------------------------------------------------------------------
+%% 数学関係
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{emath}
+
+
+
+\newcommand{\Rei}[1]{\fcolorbox{blue}{cyan!20!white}{\ 例#1\ }\vspace{.5\zw}\\}
+\newcommand{\Reidai}[1]{\fcolorbox{green}{green!20!white}{\ 例題#1\ }\quad{}}
+\newcommand{\Toi}[1]{\fcolorbox{red}{pink!20!white}{\ 問#1\ }\quad{}}
+\newcommand{\Setumatu}[1]{\fcolorbox{black}{gray!20!white}{\ 節末#1\ }\quad{}}
+\newcommand{\Libry}[1]{\fcolorbox{orange}{orange!20!white}{\ #1\ }\quad{}}
+
+\newcommand{\RedBold}[1]{\textcolor{red}{\textbf{#1}}}
 
 \begin{document}
+% ============================================================================================================
+\myHeader{第２章「統計的な推測」＞　第１節「確率分布」＞　４「確率変数の和と期待値」}
+% ============================================================================================================
 \begin{multicols*}{4}
-
-  \begin{minipage}{0.9\columnwidth}
-   \includegraphics[trim=40 100 110 100, width=1\textwidth, clip]{text/ksB_053.PNG}
-  \end{minipage}
  
+ \textbook{text/ks2/ksB_053.PNG}
+ \vfill
+ 
+ \Rei{6}
+ 1,2の数が書かれたカードが,それぞれ5枚, 3枚ある。
+ この8枚のカードから1枚を引き,カードに書かれた数を$X$とする。
+ 引いたカードをもとに戻さずにもう1回引き,カードに書かれた数を$Y$とする。
+ 
+ \hfill\RedBold{※ ステップを踏みながら例６を理解しよう。}
+
+ (1). 確率$P(X=1, Y=1)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+  \fbox{$X=1$}  
+  8枚のカードから1枚引いたときに1が出るのは$\bunsuu58$
+  
+  \fbox{$Y=1$}
+  残り7枚のカードから1枚引いたときに1が出るのは$\bunsuu47$
+  
+  よって, $P(X=1, Y=1) = \bunsuu58 \times \bunsuu47 = \bunsuu{20}{56}$
+ \end{ansBlockSize} 
+ \vfill
+ 
+ (2). 確率$P(X=1, Y=2)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+
+ \columnbreak{}
+ \null
+ \vfill\vfill
+ 
+ (3). 確率$P(X=2, Y=1)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+ \vfill
+
+ (4). 確率$P(X=2, Y=2)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+ \vfill
+ 
+ (5). ここまでの結果を利用して,下の表を埋めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|p{3\zw}|p{3\zw}|p{3\zw}|p{3\zw}|}\hline
+   & $Y=1$ & $Y=2$ & 計 \rule[-5mm]{0mm}{12mm}\\\hline
+   $X=1$ & \ $\bunsuu{20}{56}$ & & \rule[-5mm]{0mm}{12mm}\\\hline
+   $X=2$ & & & \rule[-5mm]{0mm}{12mm}\\\hline
+   計 & & & \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  
+  \hfill\RedBold{※ この表をXとYの\textbf{同時分布}という。}
+ \end{ansBlockAuto}
+ \vfill
+ 
+ (6). $X$と$Y$の同時分布から,$X$,$Y$の確率分布を探して表を埋めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|c|}\hline
+   $X$ & 1 & 2 & 計\rule[-3mm]{0mm}{8mm}\\\hline
+   $p$ & \hspace{3\zw} & \hspace{3\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  \hfill
+  \begin{tabular}{|c|c|c|c|}\hline
+   $Y$ & 1 & 2 & 計\rule[-3mm]{0mm}{8mm}\\\hline
+   $p$ & \hspace{3\zw} & \hspace{3\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  
+  \RedBold{※ $X$の周辺分布$=X$の確率分布}\hfill\RedBold{※ $Y$の周辺分布}
+ \end{ansBlockAuto}
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks2/ksB_054.PNG}
+ \textbook{text/ks2/ksB_055.PNG}
+ 
+ \columnbreak{}
+ 
+ \Rei{7}
+ 
+ 表に2または10, 裏に3または6の数が書かれたカードが13枚あり,その表と裏の内訳は,次の表のようになっているとする。
+ \vspace{.5\zw}
+
+ （表）
+ \begin{tabular}{|c|c|c|c|}\hline
+  数 & 2 & 10 & 計\\\hline
+  枚数 & 6 & 7 & 13\\\hline
+ \end{tabular}
+ \hfill
+ （裏）
+ \begin{tabular}{|c|c|c|c|}\hline
+  数 & 3 & 6 & 計\\\hline
+  枚数 & 8 & 5 & 13\\\hline
+ \end{tabular}
+ \hfill
+ \vspace{.5\zw}
+
+ この13枚のカードの中から1枚を引くとき,表に書かれた数$X$と裏に書かれた数$Y$の和$X+Y$の期待値を求めてみよう。
+
+ 
+ \RedBold{※ ステップを踏みながら例７を理解しよう。}
+
+ (1). $X+Y$の取りうる値を下の表を使って求めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|}\hline
+   & $Y=3$ & $Y=6$\rule[-5mm]{0mm}{11mm}\\\hline
+   $X=2$ & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\\hline
+   $X=10$ & 13 & \rule[-5mm]{0mm}{11mm}\\\hline
+  \end{tabular}
+  
+  \hfill\RedBold{※ よって, $X+Y = 5, 8, 13, 16$}
+ \end{ansBlockAuto}
+ 
+ (2). 下の表を利用して$X+Y$の確率分布を求めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|c|c|c|}\hline
+   $X+Y$ & 5 & 8 & 13 & 16 & 計 \\\hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & 1\\\hline
+  \end{tabular}
+  
+  \RedBold{と思ったけど,何もわかりません。orz}
+ \end{ansBlockAuto}
+ 
+
 \end{multicols*}
 \end{document}
