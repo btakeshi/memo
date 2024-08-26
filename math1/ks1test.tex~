@@ -1,0 +1,29 @@
+\documentclass[landscape]{ltjsarticle}
+
+\usepackage{graphicx}%includegraphics
+\usepackage{multicol}
+\begin{document}
+\begin{multicols*}{4}
+
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=50 100 110 100, width=1\textwidth, clip]{text/ks1_060.PNG}
+  \end{minipage}
+ \columnbreak\\
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=50 100 110 100, width=1\textwidth, clip]{text/ks1_060.PNG}
+  \end{minipage}
+ \columnbreak\\
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=50 100 110 100, width=1\textwidth, clip]{text/ks1_060.PNG}
+  \end{minipage}
+ \columnbreak\\
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=50 100 110 100, width=1\textwidth, clip]{text/ks1_060.PNG}
+  \end{minipage}
+ \columnbreak\\
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=50 100 110 100, width=1\textwidth, clip]{text/ks1_060.PNG}
+  \end{minipage}
+ 
+\end{multicols*}
+\end{document}

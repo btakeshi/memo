@@ -1,0 +1,6 @@
+(setq YaTeX:documentclasses-local '(
+("ltjsarticle")
+))
+(setq tmp-env-table '(
+("multicols*")
+))
