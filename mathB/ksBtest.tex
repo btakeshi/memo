@@ -1,0 +1,36 @@
+\documentclass[landscape,a3paper]{ltjsarticle}
+
+%% ----------------------------------------------------------------------------------------------------
+%% 版面設定
+%% ----------------------------------------------------------------------------------------------------
+\usepackage[top=18mm,bottom=18mm,left=4mm,right=4mm]{geometry}
+\setlength{\columnsep}{1.8\zw}
+\setlength{\columnseprule}{0.1pt}
+\parindent=0pt
+
+%% ----------------------------------------------------------------------------------------------------
+%% ヘッダー・フッター
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（２点）、２回目は宿題の取り組み状況（２点）、３回目は最終評価（２点）です。}}
+\fancyfoot[RO,RE]{\textcolor{blue}{※青い枠が課題です。青い枠内で解いてください。}　\textcolor{red}{※赤い枠も課題です。こちらは記述問題としてチェックします。途中もしっかりと残しておこう。}　※少しずつ〇付けをしていきます。１週間ぐらいしたら評価を行います。お早めに。}
+\fancyfoot[CO,CE]{}
+\newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\gtfamily\bfseries\small{}#1}}}
+
+\usepackage{graphicx}%includegraphics
+\usepackage{multicol}
+
+
+
+
+
+\begin{document}
+\begin{multicols*}{4}
+
+  \begin{minipage}{0.9\columnwidth}
+   \includegraphics[trim=40 100 110 100, width=1\textwidth, clip]{text/ksB_053.PNG}
+  \end{minipage}
+ 
+\end{multicols*}
+\end{document}
