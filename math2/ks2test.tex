@@ -1,0 +1,452 @@
+\documentclass[landscape,a3paper,8pt]{ltjsarticle}
+\usepackage{luatexja}
+
+%% ----------------------------------------------------------------------------------------------------
+%% 版面設定
+%% ----------------------------------------------------------------------------------------------------
+\usepackage[top=18mm,bottom=18mm,left=4mm,right=4mm]{geometry}
+\setlength{\columnsep}{1.8\zw}
+\setlength{\columnseprule}{0.1pt}
+\parindent=0pt
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% Tikz関係＋色
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% ヘッダー・フッター
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（２点）、２回目は宿題の取り組み状況（２点）、３回目は最終評価（２点）です。}}
+\fancyfoot[RO,RE]{\textcolor{blue}{※青い枠が課題です。青い枠内で解いてください。}　\textcolor{red}{※赤い枠も課題です。こちらは記述問題としてチェックします。途中もしっかりと残しておこう。}　※少しずつ〇付けをしていきます。１週間ぐらいしたら評価を行います。お早めに。}
+\fancyfoot[CO,CE]{}
+\newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\large\gtfamily\bfseries{}#1}}}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 環境作成 by environ
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{environ}
+%% --------------------------------------------------------------------------------
+%% ---------- \BODY で高さを自動調整する解答ボックス
+\NewEnviron{ansBlockAuto}{%
+ \begin{tcolorbox}[colframe=blue,colback=white]
+  \BODY
+ \end{tcolorbox}
+}
+%% ---------- 高さを指定した解答ボックス
+\NewEnviron{ansBlockSize}[1]{%
+ \begin{tcolorbox}[colframe=blue,colback=white,height=#1\zw]
+  \BODY
+ \end{tcolorbox}
+}
+%% ---------- 公式などを目立たせるボックス
+\NewEnviron{thmBlock}{%
+ \begin{tcolorbox}[colframe=red,colback=red!5!white]
+  \BODY
+ \end{tcolorbox}
+}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% コマンド作成
+%% ----------------------------------------------------------------------------------------------------
+%% --------------------------------------------------------------------------------------教科書取り込み
+\newcommand{\textbook}[2][1.00]{%
+  \begin{minipage}{0.9\columnwidth}
+    \includegraphics[trim=50 100 110 100, width=#1\textwidth, clip]{#2}
+  \end{minipage}
+}
+\newcommand{\AnswerBox}[2][1.00]{%
+  \vspace{.5zw}\\
+  \begin{tikzpicture}%
+    \draw[dotted,very thick,blue] (0,0) rectangle (#1\columnwidth,#2\zw);%
+  \end{tikzpicture}
+}
+\newcommand{\ReturnBox}{%
+    おつかれさまでした。\vspace{1\zw}\\
+    \textcolor{blue}{\bfseries すべて取り組んだら今回の学びを「振り返り」ましょう。}\\
+    \qquad{}・評価２点・・・記入できた。\\
+    \qquad{}・評価２点・・・文章で書けた。\\
+    \qquad{}・評価２点・・・２文以上書けた。\vspace{1\zw}\\
+    \textcolor{red}{\bfseries Y.やったこと}\vspace{-.5\zw}\\
+    {\footnotesize{}今回の課題で学んだことを自分のことばでまとめよう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vspace{1\zw}
+    \textcolor{red}{\bfseries W.わかったこと}\vspace{-.5\zw}\\
+    {\footnotesize{}今回の課題で理解したことを自分のことばでまとめよう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vspace{1\zw}
+    \textcolor{red}{\bfseries T.次にやること}\vspace{-.5\zw}\\
+    {\footnotesize{}次の課題に向けて何をすべきか自分のことばで残しましょう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vfill
+}
+
+
+
+\usepackage{graphicx}%includegraphics
+\usepackage{multicol}
+
+
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 数学関係
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{emath}
+
+
+
+\newcommand{\Rei}[1]{\fcolorbox{blue}{cyan!20!white}{\ 例#1\ }\vspace{.5\zw}\\}
+\newcommand{\Reidai}[1]{\fcolorbox{green}{green!20!white}{\ 例題#1\ }\quad{}}
+\newcommand{\Toi}[1]{\fcolorbox{red}{pink!20!white}{\ 問#1\ }\vspace{.5\zw}\\}
+\newcommand{\Setumatu}[1]{\fcolorbox{black}{gray!20!white}{\ 節末#1\ }\quad{}}
+\newcommand{\Libry}[1]{\fcolorbox{orange}{orange!20!white}{\ #1\ }\quad{}}
+
+\newcommand{\RedBold}[1]{\textcolor{red}{\textbf{#1}}}
+
+\begin{document}
+% ============================================================================================================
+\myHeader{第２章「統計的な推測」＞　第１節「確率分布」＞　４「確率変数の和と期待値」}
+% ============================================================================================================
+\begin{multicols*}{4}
+ 
+ \textbook{text/ks2/ksB_053.PNG}
+ \vfill
+ 
+ \Rei{6}
+ 1,2の数が書かれたカードが,それぞれ5枚, 3枚ある。
+ この8枚のカードから1枚を引き,カードに書かれた数を$X$とする。
+ 引いたカードを\textbf{もとに戻さずに}もう1回引き,カードに書かれた数を$Y$とする。
+ 
+ \hfill\RedBold{※ ステップを踏みながら例６を理解しよう。}
+
+ (1). 確率$P(X=1, Y=1)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+  \fbox{$X=1$}  
+  8枚のカードから1枚引いたときに1が出るのは$\bunsuu58$
+  
+  \fbox{$Y=1$}
+  残り7枚のカードから1枚引いたときに1が出るのは$\bunsuu47$
+  
+  よって, $P(X=1, Y=1) = \bunsuu58 \times \bunsuu47 = \bunsuu{20}{56}$
+  
+  \hfill{\color{blue}\small%
+  ※ 分布を考えるときは約分しない。
+  }
+ \end{ansBlockSize} 
+ \vspace{1\zw}
+ 
+ (2). 確率$P(X=1, Y=2)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+
+ \columnbreak{}
+ \null
+ \vfill
+ 
+ (3). 確率$P(X=2, Y=1)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+ \vspace{1\zw}
+
+ (4). 確率$P(X=2, Y=2)$を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+ \end{ansBlockSize}
+ \vspace{1\zw}
+ 
+ (5). ここまでの結果を利用して,下の表を埋めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|p{3\zw}|p{3\zw}|p{3\zw}|p{3\zw}|}\hline
+   & $Y=1$ & $Y=2$ & 計 \rule[-5mm]{0mm}{12mm}\\\hline
+   $X=1$ & \ $\bunsuu{20}{56}$ & & \rule[-5mm]{0mm}{12mm}\\\hline
+   $X=2$ & & & \rule[-5mm]{0mm}{12mm}\\\hline
+   計 & & & \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  
+  \hfill\RedBold{※ この表をXとYの\textbf{同時分布}という。}
+ \end{ansBlockAuto}
+ \vspace{1\zw}
+ 
+ (6). $X$と$Y$の同時分布から,$X$,$Y$の確率分布を探して表を埋めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|c|}\hline
+   $X$ & 1 & 2 & 計\rule[-3mm]{0mm}{8mm}\\\hline
+   $p$ & \hspace{3\zw} & \hspace{3\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  \hfill
+  \begin{tabular}{|c|c|c|c|}\hline
+   $Y$ & 1 & 2 & 計\rule[-3mm]{0mm}{8mm}\\\hline
+   $p$ & \hspace{3\zw} & \hspace{3\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{12mm}\\\hline
+  \end{tabular}
+  
+  \RedBold{※ $X$の周辺分布$=X$の確率分布}\hfill\RedBold{※ $Y$の周辺分布$=Y$の確率分布}
+ \end{ansBlockAuto}
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks2/ksB_054.PNG}
+ \textbook{text/ks2/ksB_055.PNG}
+ 
+ \columnbreak{}
+ 
+ \Rei{7}
+ 表に2または10, 裏に3または6の数が書かれたカードが13枚あり,その表と裏の内訳は,次の表のようになっているとする。
+ \vspace{.5\zw}
+ 
+ \hspace{2\zw}
+ （表）
+ \begin{tabular}{|c|c|c|c|}\hline
+  数 & 2 & 10 & 計\\\hline
+  枚数 & 6 & 7 & 13\\\hline
+ \end{tabular}
+ \hfill
+ （裏）
+ \begin{tabular}{|c|c|c|c|}\hline
+  数 & 3 & 6 & 計\\\hline
+  枚数 & 8 & 5 & 13\\\hline
+ \end{tabular}
+ \hfill
+ \vspace{.5\zw}
+
+ この13枚のカードの中から1枚を引くとき,表に書かれた数$X$と裏に書かれた数$Y$の和$X+Y$の期待値を求めてみよう。
+
+ \hfill
+ \RedBold{※ ステップを踏みながら例７を理解しよう。}
+
+ (1). $X+Y$の取り得る値を下の表を使って求めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|}\hline
+   & $Y=3$ & $Y=6$\rule[-5mm]{0mm}{11mm}\\\hline
+   $X=2$ & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\\hline
+   $X=10$ & 13 & \rule[-5mm]{0mm}{11mm}\\\hline
+  \end{tabular}
+  \quad\RedBold{※ よって, $X+Y = 5, 8, 13, 16$}
+ \end{ansBlockAuto}
+ \vspace{1\zw}
+ 
+ (2). 下の表を利用して$X+Y$の確率分布を求めよう。
+ 
+ \begin{ansBlockAuto}
+  \RedBold{と思ったけど,何もわかりません。orz}
+  \vspace{.5\zw}
+
+  \begin{tabular}{|c|c|c|c|c|c|}\hline
+   $X+Y$ & 5 & 8 & 13 & 16 & 計 \\\hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & 1 \rule[-4mm]{0mm}{10mm}\\\hline
+  \end{tabular}
+  
+  {\color{blue}\small%
+  例えば,カードは全部で13通り。
+  
+  $X+Y=5$になるのは$X=2$,$Y=3$のときだけ。
+  
+  よって表が2,裏が3のカードを数えればいいのですが・・・何枚あるか分かりますか。まったく分かりません。つまり$P(X+Y=5)$は求められない！
+  }
+  
+  \RedBold{この方法では$E(X+Y)$を求めることはできません。}
+
+  {\color{blue}\small%
+  条件を満たす13枚のカードを実際に作れば求められます。が・・・大変です。
+  }
+ \end{ansBlockAuto}
+ 
+ \begin{tcolorbox}[colframe=red,colback=pink!10!white]
+  そこで {\large\color{red} $E(X+Y) = E(X)+E(Y)$} の登場です！
+ \end{tcolorbox}
+ 
+ (3). 下の表を埋めて確率分布を作り, 期待値$E(X)$, $E(Y)$を求めよう。
+ 
+ \begin{ansBlockSize}{16}
+  \begin{minipage}{0.5\columnwidth}
+   \begin{tabular}{|c|c|c|c|}\hline
+    $X$ & 2 & 10 & 計\\\hline
+    $p$ & \hspace{2\zw} & \hspace{2\zw} & 1\rule[-4mm]{0mm}{9mm}\\\hline
+   \end{tabular}
+   \vspace{.5\zw}\\
+   $E(X)=$
+  \end{minipage}
+  \begin{minipage}{0.5\columnwidth}
+   \begin{tabular}{|c|c|c|c|}\hline
+    $Y$ & 3 & 6 & 計\\\hline
+    $p$ & \hspace{2\zw} & \hspace{2\zw} & 1\rule[-4mm]{0mm}{9mm}\\\hline
+   \end{tabular}
+   \vspace{.5\zw}\\
+   $E(Y)=$
+  \end{minipage}
+ \end{ansBlockSize}
+ \vspace{1\zw}
+ 
+ (4). $X+Y$の期待値$E(X+Y)$を求めよう。
+ 
+ \begin{ansBlockSize}{8}
+  $E(X+Y)=E(X)+E(Y)$より
+ \end{ansBlockSize}
+
+ \columnbreak{}
+ 
+ \textbook{text/ks2/ksB_055.PNG}
+ \vfill
+ 
+ \Toi{8}
+ 1個のサイコロを2回投げるとき,出る目の和の期待値を求めよ。
+ 
+ \RedBold{※ 数学A風に解いてみよう。}
+ 
+ (1). 下の表を埋めよう。また,出る目の和$Z$のとり得る値を求めよう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|c|c|c|c|}\hline
+   和& 1 & 2 & 3 & 4 & 5 & 6 \\\hline
+   1 & & & & & & \\ \hline
+   2 & & & & & & \\ \hline
+   3 & & & & & & \\ \hline
+   4 & & & & & & \\ \hline
+   5 & & & & & & \\ \hline
+   6 & & & & & & \\ \hline
+  \end{tabular}
+  \quad$Z=$
+ \end{ansBlockAuto}
+ 
+ (2). 下の表を埋めて出る目の和$Z$の確率分布を作ろう。
+ 
+ \begin{ansBlockAuto}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+   $Z$ & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 計 \\ \hline
+   $p$ & & & & & & & & & & & & \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+ \end{ansBlockAuto}
+ 
+ (3). 出る目の和の期待値を求めよう。
+ 
+ \begin{ansBlockSize}{8}
+ \end{ansBlockSize}
+ 
+ \columnbreak{}
+ 
+ \begin{thmBlock}
+  和の期待値\\
+  \hspace{5\zw}$E(X+Y)=E(X)+E(Y)$
+ \end{thmBlock}
+ $X+Y$の期待値が欲しいなら,$X$,$Y$の期待値を求めればいい！
+ \vfill
+ 
+ \Toi{8}
+ 1個のサイコロを2回投げるとき,出る目の和の期待値を求めよ。
+ 
+ \RedBold{※ 和の期待値の公式を使ってみよう。}
+ \vspace{1\zw}
+ 
+ (1). サイコロ1個目を投げるとき,出る目$X$の期待値を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+   $X$ & 1 & 2 & 3 & 4 & 5 & 6 & 計 \\ \hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+  \vspace{.5\zw}
+  
+  $E(X) = $
+ \end{ansBlockSize}
+ \vspace{1\zw}
+ 
+ (2). サイコロ2個目を投げるとき,出る目$Y$の期待値を求めよう。
+ 
+ \begin{ansBlockSize}{15}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}\hline
+   $Y$ & 1 & 2 & 3 & 4 & 5 & 6 & 計 \\ \hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+  \vspace{.5\zw}
+  
+  $E(Y) = $
+ \end{ansBlockSize}
+ \vspace{1\zw}
+ 
+ (3). 2個のサイコロを投げるとき, 出る目の和$X$,$Y$の期待値を求めよう。
+ 
+ \begin{ansBlockSize}{10}
+  $E(X+Y) = E(X) + E(Y)$より
+ \end{ansBlockSize}
+ 
+ \columnbreak{}
+ 
+ \begin{thmBlock}
+  和の期待値\\
+  \hspace{5\zw}$E(X+Y+Z)=E(X)+E(Y)+E(Z)$
+ \end{thmBlock}
+ ・・・つまり何個でもOK！
+ \vfill
+ 
+ \Toi{9}
+ 500円硬貨1枚, 100円硬貨1枚, 10円硬貨1枚を投げるとき,
+ 表が出た硬貨の金額の和の期待値を求めよ。
+ 
+ \RedBold{※確率変数が何個になっても和の期待値の公式が使えます♪}
+ 
+ (1). 500円硬貨1枚を投げるとき, 表が出た硬貨の金額$X$の期待値$E(X)$を求めよ。
+ 
+ \begin{ansBlockSize}{15}
+  \begin{tabular}{|c|c|c|c|}\hline
+   $X$ & 0 & 500 & 計 \\ \hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+  \vspace{.5\zw}\\
+  $E(X) = $
+ \end{ansBlockSize}
+
+ (2). 100円硬貨1枚を投げるとき, 表が出た硬貨の金額$Y$の期待値$E(Y)$を求めよ。
+ 
+ \begin{ansBlockSize}{15}
+  \begin{tabular}{|c|c|c|c|}\hline
+   $Y$ & 0 & 100 & 計 \\ \hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+  \vspace{.5\zw}\\
+  $E(Y) = $
+ \end{ansBlockSize}
+ 
+ (3). 10円硬貨1枚を投げるとき, 表が出た硬貨の金額$Z$の期待値$E(Z)$を求めよ。
+ 
+ \begin{ansBlockSize}{15}
+  \begin{tabular}{|c|c|c|c|}\hline
+   $Z$ & 0 & 10 & 計 \\ \hline
+   $p$ & \hspace{2\zw} & \hspace{2\zw} & \hspace{2\zw} \rule[-5mm]{0mm}{11mm}\\ \hline
+  \end{tabular}
+  \vspace{.5\zw}\\
+  $E(Z) = $
+ \end{ansBlockSize}
+ 
+ (4). $E(X+Y+Z)$を求めよ。
+ 
+ \begin{ansBlockSize}{15}
+  $E(X+Y+Z) = E(X)+E(Y)+E(Z)$より
+ \end{ansBlockSize}
+
+ \columnbreak{}
+ 
+ \ReturnBox{}
+ 
+\end{multicols*}
+\end{document}
+
