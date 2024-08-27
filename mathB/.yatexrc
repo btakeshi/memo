@@ -1,4 +1,6 @@
 (setq tmp-env-table '(
+("thmBox")
+("tcolorbox")
 ("ansBlockAuto")
 ("ansBlockSize")
 ("ansBlock")

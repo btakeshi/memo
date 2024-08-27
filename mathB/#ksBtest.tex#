@@ -23,7 +23,7 @@
 %% ----------------------------------------------------------------------------------------------------
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（２点）、２回目は宿題の取り組み状況（２点）、３回目は最終評価（２点）です。}}
+\fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（各２点）、２回目は宿題の取り組み状況（各２点）、３回目は最終評価（各２点）です。}}
 \fancyfoot[RO,RE]{\textcolor{blue}{※青い枠が課題です。青い枠内で解いてください。}　\textcolor{red}{※赤い枠も課題です。こちらは記述問題としてチェックします。途中もしっかりと残しておこう。}　※少しずつ〇付けをしていきます。１週間ぐらいしたら評価を行います。お早めに。}
 \fancyfoot[CO,CE]{}
 \newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\large\gtfamily\bfseries{}#1}}}
