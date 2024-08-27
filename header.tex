@@ -1,0 +1,122 @@
+\documentclass[landscape,a3paper,8pt]{ltjsarticle}
+\usepackage{luatexja}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 版面設定
+%% ----------------------------------------------------------------------------------------------------
+\usepackage[top=18mm,bottom=18mm,left=4mm,right=4mm]{geometry}
+\setlength{\columnsep}{1.8\zw}
+\setlength{\columnseprule}{0.1pt}
+\parindent=0pt
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% Tikz関係＋色
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% ヘッダー・フッター
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[RO,RE]{\colorbox{blue!10!white}{※３回チェックします。１回目は授業後の取り組み状況（各２点）、２回目は宿題の取り組み状況（各２点）、３回目は最終評価（各２点）です。}}
+\fancyfoot[RO,RE]{\textcolor{blue}{※青い枠が課題です。青い枠内で解いてください。}　\textcolor{red}{※赤い枠も課題です。こちらは記述問題としてチェックします。途中もしっかりと残しておこう。}　※少しずつ〇付けをしていきます。１週間ぐらいしたら評価を行います。お早めに。}
+\fancyfoot[CO,CE]{}
+\newcommand{\myHeader}[1]{\fancyhead[LO,LE]{\colorbox{red!10!white}{\large\gtfamily\bfseries{}#1}}}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 環境作成 by environ
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{environ}
+%% --------------------------------------------------------------------------------
+%% ---------- \BODY で高さを自動調整する解答ボックス
+\NewEnviron{ansBlockAuto}{%
+ \begin{tcolorbox}[colframe=blue,colback=white]
+  \BODY
+ \end{tcolorbox}
+}
+%% ---------- 高さを指定した解答ボックス
+\NewEnviron{ansBlockSize}[1]{%
+ \begin{tcolorbox}[colframe=blue,colback=white,height=#1\zw]
+  \BODY
+ \end{tcolorbox}
+}
+%% ---------- 公式などを目立たせるボックス
+\NewEnviron{thmBlock}{%
+ \begin{tcolorbox}[colframe=red,colback=red!5!white]
+  \BODY
+ \end{tcolorbox}
+}
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% コマンド作成
+%% ----------------------------------------------------------------------------------------------------
+%% --------------------------------------------------------------------------------------教科書取り込み
+\newcommand{\textbook}[2][1.00]{%
+  \begin{minipage}{0.9\columnwidth}
+    \includegraphics[trim=50 100 110 100, width=#1\textwidth, clip]{#2}
+  \end{minipage}
+}
+\newcommand{\AnswerBox}[2][1.00]{%
+  \vspace{.5zw}\\
+  \begin{tikzpicture}%
+    \draw[dotted,very thick,blue] (0,0) rectangle (#1\columnwidth,#2\zw);%
+  \end{tikzpicture}
+}
+\newcommand{\ReturnBox}{%
+    おつかれさまでした。\vspace{1\zw}\\
+    \textcolor{blue}{\bfseries すべて取り組んだら今回の学びを「振り返り」ましょう。}\\
+    \qquad{}・評価２点・・・記入できた。\\
+    \qquad{}・評価２点・・・文章で書けた。\\
+    \qquad{}・評価２点・・・２文以上書けた。\vspace{1\zw}\\
+    \textcolor{red}{\bfseries Y.やったこと}\vspace{-.5\zw}\\
+    {\footnotesize{}今回の課題で学んだことを自分のことばでまとめよう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vspace{1\zw}
+    \textcolor{red}{\bfseries W.わかったこと}\vspace{-.5\zw}\\
+    {\footnotesize{}今回の課題で理解したことを自分のことばでまとめよう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vspace{1\zw}
+    \textcolor{red}{\bfseries T.次にやること}\vspace{-.5\zw}\\
+    {\footnotesize{}次の課題に向けて何をすべきか自分のことばで残しましょう}\vspace{.5\zw}\\
+    \begin{tikzpicture}
+      \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
+    \end{tikzpicture}
+    \vfill
+}
+
+
+
+\usepackage{graphicx}%includegraphics
+\usepackage{multicol}
+
+
+
+
+%% ----------------------------------------------------------------------------------------------------
+%% 数学関係
+%% ----------------------------------------------------------------------------------------------------
+\usepackage{emath}
+
+
+
+\newcommand{\Rei}[1]{\fcolorbox{blue}{cyan!20!white}{\ 例#1\ }\vspace{.5\zw}\\}
+\newcommand{\Reidai}[1]{\fcolorbox{green}{green!20!white}{\ 例題#1\ }\quad{}}
+\newcommand{\Toi}[1]{\fcolorbox{red}{pink!20!white}{\ 問#1\ }\vspace{.5\zw}\\}
+\newcommand{\Setumatu}[1]{\fcolorbox{black}{gray!20!white}{\ 節末#1\ }\quad{}}
+\newcommand{\Libry}[1]{\fcolorbox{orange}{orange!20!white}{\ #1\ }\vspace{.5\zw}\\}
+
+\newcommand{\RedBold}[1]{\textcolor{red}{\textbf{#1}}}
+
+\renewcommand{\labelenumi}{(\arabic{enumi}).\ }
