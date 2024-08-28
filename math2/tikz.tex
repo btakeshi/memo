@@ -1,0 +1,26 @@
+\documentclass{ltjsarticle}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins}
+
+
+\begin{document}
+\tcbset{
+ghostbox/.style={
+        enhanced,
+        frame hidden,
+        interior hidden,
+        size=minimal,
+        remember as=#1
+    	}
+	}
+	\begin{align*}
+	 \int_{a}^{b} \tcboxmath[ghostbox=t1]{f(x)} dx &= \left[ \tcboxmath[ghostbox=t2]{F(x)}\right]_{a}^{b} \\
+	\end{align*}
+	
+	\begin{tikzpicture}[overlay,remember picture]
+	 \draw[->,red] (t1.north) to [bend left] 
+        node[midway,above,scale=0.5] {不定積分} (t2.north);
+	\end{tikzpicture}
+
+\end{document}

@@ -1,8 +1,16 @@
 \input{../header}
 
+\newcommand{\ansKuuran}[1]{%
+\ \tikz[baseline=(T.base)]
+\node[draw=green, fill=green!5, text=green!10] (T) {\Large\ #1\ \null};
+\ 
+}
+
+\usepackage{amsmath}	% required for `\align*' (yatex added)
+
 \begin{document}
 % ============================================================================================================
-\myHeader{第５章「微分と積分」＞　第３節「積分」＞　１「不定積分」}
+\myHeader{第５章「微分と積分」＞　第３節「積分」＞　不定積分・定積分そして面積}
 % ============================================================================================================
 \begin{multicols*}{4}
  
@@ -14,24 +22,36 @@
  \textbook{text/ks5/ks2_192.PNG}
  \vfill
  
+ \RedBold{空欄を埋めて重要キーワードを確認しよう！}
+ 
+ \begin{itemize}
+  \item 関数$f(x)$に対して,
+	微分すると $f(x)$ になる関数$F(x)$ を,\\
+	\hspace{3\zw}$f(x)$の\ansKuuran{原始関数}という。
+	\vfill
+	\begin{itemize}
+	 \item $F(x)$ を微分すれば $f(x)$ になる。
+	 \item つまり・・・$F'(x) = $\ansKuuran{$f(x)$}
+	 \item 原始関数は無数にある。その違いは定数部分のみであり, これらをまとめて$C$と表す。
+	 \item $F(x)+C$をまとめて$f(x)$の\ansKuuran{不定積分}といい,\\
+	       \hspace{3\zw}\ansKuuran{$\displaystyle\int f(x)\,dx$}で表す。
+	\end{itemize}
+	\vfill
+  \item $f(x)$の不定積分を求めることを, $f(x)$を \ansKuuran{積分する}といい,\\
+	\hspace{3\zw}定数$C$を\ansKuuran{積分定数}という。
+	\begin{itemize}
+	 \item とくに断らなくても, $C$は積分定数を表す。
+	\end{itemize}
+	\vfill
+ \end{itemize}
+ 
  \begin{thmBlock}
   \RedBold{\fbox{積分する}} $\maru1$ $x$増やす $\maru2$ 増やした数で割る$\maru3$ 必要なら約分 $\maru4$ $+C$
   
-  \fbox{微分する} $\maru1$ $x$の係数と指数をかける $\maru2$ $x$減らす
+  \hfill{}※ 微分も積分も「展開」してから！
   
-  ※ 微分も積分も「展開」してから！
+  \fbox{微分する} $\maru1$ $x$の係数と指数をかける $\maru2$ $x$減らす $\maru3$ 定数は消す
  \end{thmBlock}
- 
- \Rei{14,15}
- 次の不定積分を求めよ。
- 
- \begin{enumerate}
-  \item $\displaystyle\int (3x^2-4x+2)\,dx$
-	\vfill
-  \item $\displaystyle\int (x-1)(x-2)\,dx$
-	\vfill
- \end{enumerate}
- \null
  
  \columnbreak{}
  
@@ -40,66 +60,269 @@
  
  \begin{enumerate}
   \item $\displaystyle\int (3x^2-4x+2)\,dx$
-	\begin{ansBlockSize}{8}
+	\vfill
+  \item $\displaystyle\int (x-1)(x-2)\,dx$
+	\vfill
+ \end{enumerate}
+ 
+ \RedBold{上の例を参考に不定積分の手順を確認しよう！}
+ \vspace{1\zw}
+ 
+ \Rei{14,15}
+ 次の不定積分を求めよ。
+ 
+ \begin{enumerate}
+  \item $\displaystyle\int (3x^2-4x+2)\,dx$
+	\begin{ansBlockSize}{15}
 	\end{ansBlockSize}
   \item $\displaystyle\int (x-1)(x-2)\,dx$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{18}
 	\end{ansBlockSize}
  \end{enumerate}
+ 
+ \columnbreak{}
  
  \Toi{23}
  次の不定積分を求めよ。
  
  \begin{enumerate}
   \item $\displaystyle\int 7\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
   \item $\displaystyle\int (6x^2+x-5)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
   \item $\displaystyle\int (x^3+4)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
   \item $\displaystyle\int (x+1)(x+3)\,dx$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{15}
 	\end{ansBlockSize}
   \item $\displaystyle\int (3t+2)^2\,dt$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{15}
 	\end{ansBlockSize}
  \end{enumerate}
-
- \Libry{Axis420}
+ 
+ \columnbreak{}
+ 
+ \Libry{Axis 420}
  次の不定積分を求めよ。
  
  \begin{enumerate}
   \item $\displaystyle\int (-5)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{6}
 	\end{ansBlockSize}
   \item $\displaystyle\int (2x-1)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{6}
 	\end{ansBlockSize}
   \item $\displaystyle\int (x^2-3x-2)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{6}
 	\end{ansBlockSize}
   \item $\displaystyle\int (4x^3-3x^2-2x-1)\,dx$
-	\begin{ansBlockSize}{8}
+	\begin{ansBlockSize}{6}
 	\end{ansBlockSize}
  \end{enumerate}
-
- \Libry{Axis421}
+ 
+ \Libry{Axis 421}
  次の不定積分を求めよ。
  
  \begin{enumerate}
   \item $\displaystyle\int (x-1)(x+2)\,dx$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
   \item $\displaystyle\int (2x+3)^2\,dx$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
   \item $\displaystyle\int (x+1)^3\,dx$
-	\begin{ansBlockSize}{12}
+	\begin{ansBlockSize}{10}
 	\end{ansBlockSize}
  \end{enumerate}
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks5/ks2_193.PNG}
+ \vfill
+ 
+ \RedBold{空欄を埋めて重要キーワードを確認しよう！}
+ 
+ \begin{itemize}
+  \item $f(x)$の原始関数の1つを$F(x)$とすると,\\
+	\begin{itemize}
+	 \item $F(b)-F(a)$は, 原始関数の選び方に関係なく\ansKuuran{定まる}。
+	 \item $F(b)-F(a)$を, 関数$f(x)$の$a$から$b$までの\ansKuuran{定積分}という。
+	 \item \ansKuuran{$\displaystyle\int{a}^{b}f(x)\,dx$}$=\left[F(x)\right]_{a}^{b} = F(b)-F(a)$
+	 \item $a$をこの定積分の\ansKuuran{下端}, $b$を\ansKuuran{上端}という。
+	 \item この定積分を求めることを\\
+	       \hspace{3\zw}$f(x)$を$a$から$b$まで\ansKuuran{積分する}という。
+	\end{itemize}
+  \item 積分にも\ansKuuran{線形性}あり！
+ \end{itemize}
+ \vspace{1\zw}
+ 
+ \Rei{16}
+ $\displaystyle\int_{1}^{4}x^2\,dx$
+ \vfill
+ \vfill
+ \vfill
+ \null
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks5/ks2_194.PNG}
+ \vspace{1\zw}
+ 
+ \RedBold{※ 線形性を意識すれば覚えることが減る！}
+ \vspace{1\zw}
+ 
+ \Rei{17}
+ $\displaystyle\int_{-1}^{3}(2t^2-5t)\,dt$
+ \vfill
+ \vfill
+ \null
+ 
+ \columnbreak{}
+ 
+ \Toi{25}
+ 次の定積分を求めよ。
+ \begin{enumerate}
+  \item $\displaystyle\int_{1}^{2}(x-1)(x-2)\,dx$
+	\begin{ansBlockSize}{24}
+	\end{ansBlockSize}
+	\vfill
+  \item $\displaystyle\int_{3}^{0}(1-2t^2)\,dt$
+	\begin{ansBlockSize}{24}
+	\end{ansBlockSize}
+	\vfill
+  \item $\displaystyle\int_{1}^{-1}(y^2+2y+1)\,dy$
+	\begin{ansBlockSize}{24}
+	\end{ansBlockSize}
+ \end{enumerate}
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks5/ks2_198.PNG}
+ \textbook{text/ks5/ks2_199.PNG}
+ 
+ \columnbreak{}
+ 
+ \textbook{text/ks5/ks2_200.PNG}
+ \textbook{text/ks5/ks2_201.PNG}
+ 
+ \columnbreak{}
+ 
+ \begin{tcolorbox}[title=The 面積の公式！,colback=orange!5,colframe=orange,colbacktitle=orange!10,coltitle=orange]
+  $\maru1$\ 簡単なグラフをかいて求めたい面積を確認！
+  
+  $\maru2$\ $x$座標の\textbf{左}端と\textbf{右}端、グラフの\textbf{上下}を確認して
+  
+  $\maru3$\ 公式にセット！\\
+  \LARGE
+  面積 $= \displaystyle\int_{左}^{右} \left( 上 - 下 \right)\,dx$
+ \end{tcolorbox}
+ \vspace{1\zw}
+ 
+ \RedBold{面積の公式はこれ１つで十分！グラフは上下左右が分かる簡単なものでOK！}
+ \vspace{1\zw}
+ 
+ \Rei{23}
+ 放物線$y=x^2-1$と直線$y=x+1$および2直線$x=0$, $x=1$で囲まれた部分の面積$S$を求めてみよう。
+ \vfill
+ 
+ \Toi{35}
+ 放物線$y=x^2-3x$と直線$y=x+5$および2直線$x=1$, $x=3$で囲まれた部分の面積$S$を求めよ。
+ \begin{ansBlockSize}{40}
+ \end{ansBlockSize}
+ 
+ \columnbreak{}
+ \Reidai{12}
+ 次の2つの放物線で囲まれた部分の面積$S$を求めよ。\\
+ \hspace{3\zw}$y=x^2+2x$,\quad{}$y=-x^2+4$
+ \vfill
+ 
+ \Toi{36}
+ 次の2つの放物線で囲まれた部分の面積$S$を求めよ。\\
+ \hspace{3\zw}$y=x^2-1$,\quad{}$y=-x^2+x$
+ \begin{ansBlockSize}{45}
+ \end{ansBlockSize}
+ 
+ \columnbreak{}
+ 
+ \Rei{21}
+ 放物線$y=x^2+1$と$x$軸および2直線$x=1$, $x=3$で囲まれた部分の面積$S$を求めてみよう。
+ \begin{ansBlockSize}{40}
+  グラフは右のようになるから\\
+  $S = \displaystyle\int_{1}^{3}\left\{(x^2+1)-0\right\}\,dx$
+ \end{ansBlockSize}
+ 
+ \Toi{33}
+ 放物線$y=6x-2x^2$と$x$軸および2直線$x=1$, $x=2$で囲まれた部分の面積$S$を求めてみよう。
+ \begin{ansBlockSize}{40}
+  \RedBold{左右が分からないときは連立！}\\
+  $y=6x-2x^2$と$x$軸（$y=0$）を連立して
+  \begin{align*}
+   6x-2x^2 &= 0\\
+   2x^2-6x &= 0\\
+   x^2-3x &= 0\\
+   x(x-3) &= 0\\
+   x &= 0,\ 3
+  \end{align*}
+  グラフは右のようになるから\\
+  $S = \displaystyle\int_{1}^{2}\left\{(6x-2x^2)-0\right\}\,dx$
+ \end{ansBlockSize}
+ 
+ \columnbreak{}
+ 
+ \Rei{22}
+ 放物線$y=x^2-2x$と$x$軸で囲まれた部分の面積$S$を求めてみよう。
+ \begin{ansBlockSize}{60}
+  \RedBold{左右が分からないときは連立！}\\
+  $y=x^2-2x$と$x$軸（$y=0$）を連立して
+  \begin{align*}
+   x^2-2x &= 0\\
+   x(x-2) &= 0\\
+   x &= 0,\ 2
+  \end{align*}
+  グラフは右のようになるから\\
+  $S = \displaystyle\int_{0}^{2}\left\{0-(x^2-2x)\right\}\,dx$
+ \end{ansBlockSize}
+ \vfill
+ \null
+ 
+ \columnbreak{}
+ 
+ \Toi{34}
+ 次の放物線や直線で囲まれた部分の面積$S$を求めよ。
+ \begin{enumerate}
+  \item  放物線$y=x^2-3x-4$, $x$軸
+	 \begin{ansBlockSize}{42}
+	  \RedBold{左右が分からないときは連立！}\\
+	  $y=x^2-3x-4$と$x$軸（$y=0$）を連立して
+	  \begin{align*}
+	   x^2-3x-4 &= 0\\
+	   (x+1)(x-4) &= 0\\
+	   x &= -1,\ 4
+	  \end{align*}
+	  グラフは右のようになるから\\
+	  $S = \displaystyle\int_{-1}^{4}\left\{0-(x^2-3x-4)\right\}\,dx$
+	 \end{ansBlockSize}
+	 \vfill
+  \item  放物線$y=x^2-2$と$x$軸, $y$軸, 直線$x=1$
+	 \begin{ansBlockSize}{42}
+	  \RedBold{左右が分からないときは連立！}\\
+	  $y=x^2-2$と$x$軸（$y=0$）を連立して
+	  \begin{align*}
+	   x^2-2 &= 0\\
+	   x^2 &= 2\\
+	   x &= -\sqrt{2},\ \sqrt{2}
+	  \end{align*}
+	  グラフは右のようになるから\\
+	  $S = \displaystyle\int_{0}^{1}\left\{0-(x^2-2)\right\}\,dx$
+	 \end{ansBlockSize}
+ \end{enumerate}
+ 
+ \columnbreak{}
+ \ReturnBox
+ 
 \end{multicols*}
 \end{document}
 

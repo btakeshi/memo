@@ -1,0 +1,13 @@
+\documentclass{ltjsarticle}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+
+
+\begin{document}
+\[
+    y = \sin x \quad 
+    \tcboxmath{y = \cos x} \quad 
+    y = \tan x
+\]
+\end{document}

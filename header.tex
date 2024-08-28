@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems,skins}%tcboxmathを使うため
 
 
 %% ----------------------------------------------------------------------------------------------------
@@ -81,13 +82,13 @@
     \begin{tikzpicture}
       \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
     \end{tikzpicture}
-    \vspace{1\zw}
+    \vspace{1\zw}\\
     \textcolor{red}{\bfseries W.わかったこと}\vspace{-.5\zw}\\
     {\footnotesize{}今回の課題で理解したことを自分のことばでまとめよう}\vspace{.5\zw}\\
     \begin{tikzpicture}
       \draw[ultra thick,red] (0,0) rectangle (0.95\columnwidth,5);
     \end{tikzpicture}
-    \vspace{1\zw}
+    \vspace{1\zw}\\
     \textcolor{red}{\bfseries T.次にやること}\vspace{-.5\zw}\\
     {\footnotesize{}次の課題に向けて何をすべきか自分のことばで残しましょう}\vspace{.5\zw}\\
     \begin{tikzpicture}
@@ -112,10 +113,10 @@
 
 
 \newcommand{\Rei}[1]{\fcolorbox{blue}{cyan!20!white}{\ 例#1\ }\vspace{.5\zw}\\}
-\newcommand{\Reidai}[1]{\fcolorbox{green}{green!20!white}{\ 例題#1\ }\quad{}}
+\newcommand{\Reidai}[1]{\fcolorbox{green}{green!20!white}{\ 例題#1\ }\vspace{.5\zw}\\}
 \newcommand{\Toi}[1]{\fcolorbox{red}{pink!20!white}{\ 問#1\ }\vspace{.5\zw}\\}
 \newcommand{\Setumatu}[1]{\fcolorbox{black}{gray!20!white}{\ 節末#1\ }\quad{}}
-\newcommand{\Libry}[1]{\fcolorbox{orange}{orange!20!white}{\ #1\ }\vspace{.5\zw}\\}
+\newcommand{\Libry}[1]{\fcolorbox{orange}{orange!20!white}{\ #1\ }\ \textcolor{orange}{\small 解き終わったらスクリーンショットを撮ってLibryに登録！}\vspace{.5\zw}\\}
 
 \newcommand{\RedBold}[1]{\textcolor{red}{\textbf{#1}}}
 
